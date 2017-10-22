@@ -1,6 +1,9 @@
 const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
+const bodyParser = require('body-parser');
+
+var urlencodedparser = bodyParser.urlencoded({extended: false});
 
 const port = process.env.PORT || 3000;
 
@@ -61,6 +64,21 @@ app.get('/projects', (request, response)=>{
   response.render('project.hbs', {
     pageTitle: 'Project Page'
   });
+});
+
+app.post('/show-form', urlencodedparser, (request, response)=>{
+  var res = {
+    first_name : request.body.fname,
+    last_name : request.body.lname
+  }
+  // response.send({
+  //   res
+  // });
+  response.render('form-data.hbs', {
+    res: JSON.stringify(res),
+    name: 'Kunal'
+  });
+  console.log(res);
 });
 
 app.listen(port, ()=>{
