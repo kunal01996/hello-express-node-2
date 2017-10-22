@@ -30,11 +30,11 @@ app.use((request, response, next)=>{
   next();
 });
 
-app.use((request, response, next)=>{
-  response.render('maintenance.hbs', {
-    pageTitle: 'Maintenance Mode'
-  });
-});
+// app.use((request, response, next)=>{
+//   response.render('maintenance.hbs', {
+//     pageTitle: 'Maintenance Mode'
+//   });
+// });
 
 app.use(express.static(__dirname + '/public'));
 
